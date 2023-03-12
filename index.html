@@ -5,12 +5,22 @@
   <meta charset="UTF-8">
   <title>カレンダー</title>
   <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
   <script src="./calendar.js"></script>
 </head>
 <body>
 <!--カレンダーの高さは 4 週～6 週で可変-->
-<div id="month">
-3月
+<div id="header">
+  <div id="month">
+    <button><i class="fas fa-angle-left"></i></button>
+    <span>3月</span>
+    <button><i class="fas fa-angle-right"></i></button>
+  </div>
+  <div id="control">
+    <button><i class="fas fa-redo-alt"></i></button>
+    <button><i class="fas fa-link"></i></button>
+  </div>
+</div>
 </div>
 <div id="calendar">
   <div class="cells daynames">

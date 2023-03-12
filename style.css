@@ -26,21 +26,51 @@ body {
 }
 
 @media print {
+  html {
+    font-size: calc(210mm * 0.1);
+  }
   body {
     width: 210mm;
     height: 297mm;
     font-size: calc(210mm * 0.1);
   }
+  button {
+    display: none;
+  }
 }
 
-#month {
-  display: flex;
+button {
+  background: inherit;
+  font-size: inherit;
+  border: inherit;
+  color: inherit;
+}
+
+button:hover {
+  color: #33f;
+}
+
+button:active {
+  color: inherit;
+}
+
+#header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-items: center;
+  /*
   justify-content: center;
   align-items: center;
+  */
   height: 8%;
   text-align: center;
   font-size: 0.8rem;
   font-weight: bold;
+}
+#header #month {
+  grid-column-start: 2;
+}
+#month {
 }
 #calendar {
   background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi");
