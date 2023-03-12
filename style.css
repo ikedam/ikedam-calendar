@@ -1,0 +1,110 @@
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: calc(95vw * 0.1);
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "HGP創英角ﾎﾟｯﾌﾟ体",sans-serif;
+  /* スクロールバー分を除外する必要がある */
+  width: 95vw;
+  height: calc(95vw * 297 / 210);
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2vw;
+  font-size: calc(95vw * 0.1);
+}
+
+@media print {
+  body {
+    width: 210mm;
+    height: 297mm;
+    font-size: calc(210mm * 0.1);
+  }
+}
+
+#month {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 8%;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+#calendar {
+  background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi");
+  background-color: rgba(255, 255, 255, 0.8);
+  background-blend-mode: lighten;
+  background-size: cover;
+  background-position: center;
+  border: 0.01rem solid #000;
+  height: 92%;
+  margin: 0;
+  padding: 0;
+}
+
+#calendar .cells {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+#calendar .daynames {
+  height: 0.8rem;
+}
+
+#calendar .days {
+  height: calc(100% - 0.8rem);
+}
+
+#calendar .cells>div {
+  border: 0.01rem solid #000;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  font-size: 0.5rem;
+}
+
+#calendar .cells.days>div {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#calendar .cells.days>div.holiday {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: rgba(255, 0, 0, 0.5);
+}
+#calendar .cells>div:nth-of-type(7n-6) {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+#calendar .cells.days>div:nth-of-type(7n-6) {
+  color: rgba(255, 0, 0, 0.5);
+}
+
+#calendar .cells.daynames>div:nth-of-type(7n-6) {
+  color: rgba(255, 0, 0);
+}
+
+#calendar .cells>div:nth-of-type(7n) {
+  background-color: rgba(0, 0, 255, 0.1);
+}
+
+#calendar .cells.days>div:nth-of-type(7n) {
+  color: rgba(0, 0, 255, 0.5);
+}
+
+#calendar .cells.daynames>div:nth-of-type(7n) {
+  color: rgba(0, 0, 255);
+}
