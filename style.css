@@ -67,10 +67,8 @@ button:active {
   font-size: 0.8rem;
   font-weight: bold;
 }
-#header #month {
+#header #monthBlock {
   grid-column-start: 2;
-}
-#month {
 }
 #calendar {
   background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi");

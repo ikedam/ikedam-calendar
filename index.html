@@ -11,10 +11,10 @@
 <body>
 <!--カレンダーの高さは 4 週～6 週で可変-->
 <div id="header">
-  <div id="month">
-    <button><i class="fas fa-angle-left"></i></button>
-    <span>3月</span>
-    <button><i class="fas fa-angle-right"></i></button>
+  <div id="monthBlock">
+    <button id="prior"><i class="fas fa-angle-left"></i></button>
+    <span id="month">3月</span>
+    <button id="next"><i class="fas fa-angle-right"></i></button>
   </div>
   <div id="control">
     <button><i class="fas fa-redo-alt"></i></button>
@@ -32,7 +32,7 @@
     <div>金</div>
     <div>土</div>
   </div>
-  <div class="cells days">
+  <div id ="days" class="cells days">
     <div></div>
     <div></div>
     <div></div>
