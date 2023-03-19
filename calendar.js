@@ -1,8 +1,12 @@
 (() => {
+  const holidayURL = 'https://holidays-jp.github.io/api/v1/date.json';
+  const imagesURL = 'https://www.ikedam.jp/dl/1day1pict/json.cgi/image.json';
+
   let today = new Date();
   let year = today.getFullYear();
   let month = today.getMonth() + 1;
   let holidays = undefined;
+  let images = undefined;
 
   let markHolidays = () => {
     if (!holidays) {
@@ -52,6 +56,7 @@
       dayElement.innerText = day;
       dayContainer.appendChild(dayElement);
     }
+    shuffleImage();
     markHolidays();
   };
 
@@ -69,6 +74,37 @@
     year = newYear;
     month = newMonth;
     return true;
+  };
+
+  const shuffleImage = () => {
+    if (!images) {
+      return;
+    }
+    const idx = Math.floor(Math.random() * images.length);
+    const url = new URL(images[idx], imagesURL);
+    document.getElementById('calendar').style.backgroundImage = `url(${url.href})`
+  };
+
+  const loadHolidays = () => {
+    const req = new XMLHttpRequest();
+    req.withCredentials = false;
+    req.addEventListener('load', () => {
+      holidays = JSON.parse(req.responseText);
+      markHolidays();
+    });
+    req.open('GET', holidayURL);
+    req.send();
+  };
+
+  const loadImages = () => {
+    const req = new XMLHttpRequest();
+    req.withCredentials = false;
+    req.addEventListener('load', () => {
+      images = JSON.parse(req.responseText);
+      shuffleImage();
+    });
+    req.open('GET', imagesURL);
+    req.send();
   };
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -95,14 +131,7 @@
     });
     reflectHash();
     setupDays();
-
-    const req = new XMLHttpRequest();
-    req.withCredentials = false;
-    req.addEventListener('load', () => {
-      holidays = JSON.parse(req.responseText);
-      markHolidays();
-    });
-    req.open('GET', 'https://holidays-jp.github.io/api/v1/date.json');
-    req.send();
+    loadHolidays();
+    loadImages();
   });
 })();

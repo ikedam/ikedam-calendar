@@ -71,7 +71,7 @@ button:active {
   grid-column-start: 2;
 }
 #calendar {
-  background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi");
+  /* background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi"); */
   background-color: rgba(255, 255, 255, 0.8);
   background-blend-mode: lighten;
   background-size: cover;
