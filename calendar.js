@@ -7,6 +7,7 @@
   let month = today.getMonth() + 1;
   let holidays = undefined;
   let images = undefined;
+  let currentImage = undefined;
 
   let markHolidays = () => {
     if (!holidays) {
@@ -68,7 +69,7 @@
     }
     const newYear = Number(monthMatch[1]);
     const newMonth = Number(monthMatch[2]);
-    if (newYear == year && newMonth == month) {
+    if (newYear === year && newMonth === month) {
       return false;
     }
     year = newYear;
@@ -76,12 +77,30 @@
     return true;
   };
 
+  const decideImage = () => {
+    if (window.location.search && window.location.search.startsWith('?')) {
+      try {
+        const image = decodeURIComponent(window.location.search.substring(1));
+        if (images.includes(image)) {
+          return image;
+        }
+      } catch (_) {
+      }
+    }
+    const idx = Math.floor(Math.random() * images.length);
+    return images[idx];
+  }
+
   const shuffleImage = () => {
     if (!images) {
       return;
     }
-    const idx = Math.floor(Math.random() * images.length);
-    const url = new URL(images[idx], imagesURL);
+    const image = decideImage();
+    if (image === currentImage) {
+      return;
+    }
+    currentImage = image;
+    const url = new URL(currentImage, imagesURL);
     document.getElementById('calendar').style.backgroundImage = `url(${url.href})`
   };
 
@@ -124,9 +143,35 @@
       }
       setupDays();
     });
+    document.getElementById('shuffle').addEventListener('click', () => {
+      if (window.location.search) {
+        const url = new URL(window.location);
+        url.search = '';
+        window.history.pushState({}, '', url);
+      }
+      shuffleImage();
+    });
+    document.getElementById('link').addEventListener('click', () => {
+      if (!currentImage) {
+        return;
+      }
+      const url = new URL(window.location);
+      url.search = '?' + encodeURIComponent(currentImage);
+      if (window.location.href !== url.href) {
+        window.history.pushState({}, '', url);
+      }
+      navigator.clipboard.writeText(url.href);
+    });
     window.addEventListener('hashchange', () => {
       if (reflectHash()) {
         setupDays();
+      }
+    });
+    window.addEventListener('popstate', () => {
+      if (reflectHash()) {
+        setupDays();
+      } else {
+        shuffleImage();
       }
     });
     reflectHash();
