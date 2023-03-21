@@ -44,6 +44,8 @@ button {
   font-size: inherit;
   border: inherit;
   color: inherit;
+  padding: 0;
+  margin: 0;
 }
 
 button:hover {
@@ -74,6 +76,7 @@ button:active {
   /* background-image: url("https://www.ikedam.jp/dl/1day1pict/random.cgi"); */
   background-color: rgba(255, 255, 255, 0.8);
   background-blend-mode: lighten;
+  background-repeat: no-repeat; /* workaround for Safari/iOS */
   background-size: cover;
   background-position: center;
   border: 0.01rem solid #000;
