@@ -9,7 +9,7 @@
   let images = undefined;
   let currentImage = undefined;
 
-  let markHolidays = () => {
+  const markHolidays = () => {
     if (!holidays) {
       return;
     }
@@ -25,7 +25,11 @@
     });
   };
 
-  let setupDays = () => {
+  const toggleHoliday = (e) => {
+    e.target.classList.toggle('holiday');
+  };
+
+  const setupDays = () => {
     document.getElementById('month').innerText = `${month}月`;
     window.location.hash = `#${year}-${String(month).padStart(2, '0')}`;
 
@@ -55,6 +59,7 @@
     for (const day of dayList) {
       const dayElement = document.createElement('div');
       dayElement.innerText = day;
+      dayElement.addEventListener('dblclick', toggleHoliday);
       dayContainer.appendChild(dayElement);
     }
     shuffleImage();
