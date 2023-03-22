@@ -14,6 +14,11 @@ html {
 body {
   box-sizing: border-box;
   font-family: "HGP創英角ﾎﾟｯﾌﾟ体",sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+section {
   /* スクロールバー分を除外する必要がある */
   width: 95vw;
   height: calc(95vw * 297 / 210);
@@ -22,17 +27,27 @@ body {
   margin-left: auto;
   margin-right: auto;
   padding: 2vw;
-  font-size: calc(95vw * 0.1);
 }
+
+footer {
+  border-top: 1px solid #000;
+  font-size: 12pt;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+}
+
 
 @media print {
   html {
     font-size: calc(210mm * 0.1);
   }
-  body {
+  section {
     width: 210mm;
     height: 297mm;
-    font-size: calc(210mm * 0.1);
+  }
+  footer {
+    display: none;
   }
   button {
     display: none;
