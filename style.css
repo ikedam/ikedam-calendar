@@ -8,7 +8,7 @@ html {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: calc(95vw * 0.1);
+  font-size: calc(95vh * 210 / 297 * 0.1);
 }
 
 body {
@@ -20,13 +20,13 @@ body {
 
 section {
   /* スクロールバー分を除外する必要がある */
-  width: 95vw;
-  height: calc(95vw * 297 / 210);
+  height: 95vh;
+  width: calc(95vh * 210 / 297);
   margin-top: 0;
   margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
-  padding: 2vw;
+  padding: 2vh;
 }
 
 footer {

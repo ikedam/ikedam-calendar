@@ -29,9 +29,11 @@
     e.target.classList.toggle('holiday');
   };
 
-  const setupDays = () => {
+  const setupDays = (updateHash) => {
     document.getElementById('month').innerText = `${month}月`;
-    window.location.hash = `#${year}-${String(month).padStart(2, '0')}`;
+    if (updateHash === undefined || updateHash) {
+      window.location.hash = `#${year}-${String(month).padStart(2, '0')}`;
+    }
 
     const firstDate = new Date(year, month - 1, 1);
     const lastDate = new Date(year, month - 1, 1);
@@ -180,7 +182,7 @@
       }
     });
     reflectHash();
-    setupDays();
+    setupDays(false);
     loadHolidays();
     loadImages();
   });
