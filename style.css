@@ -45,6 +45,8 @@ footer {
   section {
     width: 210mm;
     height: 297mm;
+    box-sizing: border-box;
+    padding: 10mm;
   }
   footer {
     display: none;
